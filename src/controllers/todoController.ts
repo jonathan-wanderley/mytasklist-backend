@@ -2,7 +2,11 @@ import { Request, Response } from 'express';
 import { Todo } from '../models/Todo';
 
 export const all= async (req: Request, res: Response)=> {
-    const list = await Todo.findAll();
+    const list = await Todo.findAll({
+        order: [
+            ['id','DESC']
+        ]
+    });
     res.json({list})
 }
 export const add = async (req: Request, res: Response)=> {
